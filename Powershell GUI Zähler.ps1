@@ -1,4 +1,4 @@
-﻿[void][System.Reflection.Assembly]::LoadWithPartialName("System.Drawing") 
+[void][System.Reflection.Assembly]::LoadWithPartialName("System.Drawing") 
 [void][System.Reflection.Assembly]::LoadWithPartialName("System.Windows.Forms")
 
 $myF = New-Object System.Windows.Forms.Form
@@ -19,6 +19,8 @@ $label.Text = "Zähler"
 $label.Font = "Times New Roman, 16.5"
 $label.AutoSize = $true
 $label.Location = "10,180"
+$label.Add_mouseHover{$global:count=0
+$label.Text = "Klicks: $global:count"}
 
 $myF.controls.Add($b)
 $myF.controls.Add($label)
