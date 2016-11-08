@@ -43,6 +43,8 @@ $statusBar1.Text = "Zahl kleiner als $scrollnumber, das ist $global:versuch. Ver
 elseif($global:randomnumber -eq $scrollnumber)
 {
 $statusBar1.Text = "Zahl gefunden, es ist $global:randomnumber"
+$global:randomnumber = get-random -Minimum 1 -Maximum 100
+$global:versuch= 0
 }
 
 }
