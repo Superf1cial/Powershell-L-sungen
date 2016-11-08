@@ -20,6 +20,7 @@ $button1 = New-Object System.Windows.Forms.Button
 $trackBar1 = New-Object System.Windows.Forms.TrackBar
 $label1 = New-Object System.Windows.Forms.Label
 $statusBar1 = New-Object System.Windows.Forms.StatusBar
+$progressbar1 = New-Object System.Windows.Forms.progressbar
 $InitialFormWindowState = New-Object System.Windows.Forms.FormWindowState
 #endregion Generated Form Objects
 
@@ -32,20 +33,30 @@ $button1_OnClick=
 $global:Versuch++
 
 $scrollnumber = $trackBar1.Value
-if($global:randomnumber -gt $scrollnumber)
+if($global:randomnumber -gt $scrollnumber -and $global:Versuch -lt 5)
 {
 $statusBar1.Text = "Zahl größer als $scrollnumber, das ist $global:Versuch. Versuch"
+$progressBar1.value = $progressbar1.value + 20
 }
-elseif($global:randomnumber -lt $scrollnumber)
+elseif($global:randomnumber -lt $scrollnumber -and $global:Versuch -lt 5)
 {
 $statusBar1.Text = "Zahl kleiner als $scrollnumber, das ist $global:versuch. Versuch"
+$progressBar1.value = $progressbar1.value + 20
 }
-elseif($global:randomnumber -eq $scrollnumber)
+elseif($global:randomnumber -eq $scrollnumber -and $global:Versuch -lt 5)
 {
 $statusBar1.Text = "Zahl gefunden, es ist $global:randomnumber"
 $global:randomnumber = get-random -Minimum 1 -Maximum 100
 $global:versuch= 0
+$progressBar1.value = $progressbar1.value + 20
 }
+else{
+$statusBar1.Text = "Verloren, zuviele Versuche gebraucht"
+$button1.Enabled = $false
+$progressBar1.Value = $progressBar1.Value + 20
+}
+
+
 
 }
 
@@ -80,7 +91,7 @@ $button1.DataBindings.DefaultDataSourceUpdateMode = 0
 
 $System_Drawing_Point = New-Object System.Drawing.Point
 $System_Drawing_Point.X = 53
-$System_Drawing_Point.Y = 142
+$System_Drawing_Point.Y = 135
 $button1.Location = $System_Drawing_Point
 $button1.Name = "button1"
 $System_Drawing_Size = New-Object System.Drawing.Size
@@ -115,7 +126,7 @@ $form1.Controls.Add($trackBar1)
 $label1.DataBindings.DefaultDataSourceUpdateMode = 0
 
 $System_Drawing_Point = New-Object System.Drawing.Point
-$System_Drawing_Point.X = 68
+$System_Drawing_Point.X = 115
 $System_Drawing_Point.Y = 25
 $label1.Location = $System_Drawing_Point
 $label1.Name = "label1"
@@ -124,7 +135,7 @@ $System_Drawing_Size.Height = 23
 $System_Drawing_Size.Width = 135
 $label1.Size = $System_Drawing_Size
 $label1.TabIndex = 1
-$label1.Text = "Eingestellte Zahl"
+$label1.Text = "1"
 
 $form1.Controls.Add($label1)
 
@@ -142,6 +153,21 @@ $statusBar1.TabIndex = 0
 $statusBar1.Text = "Anzahl der Versuche"
 
 $form1.Controls.Add($statusBar1)
+
+$progressBar1.DataBindings.DefaultDataSourceUpdateMode = 0
+$System_Drawing_Point = New-Object System.Drawing.Point
+$System_Drawing_Point.X = 0
+$System_Drawing_Point.Y = 178.7
+$progressBar1.Location = $System_Drawing_Point
+$progressBar1.Name = "progressBar1"
+$System_Drawing_Size = New-Object System.Drawing.Size
+$System_Drawing_Size.Height = 23
+$System_Drawing_Size.Width = 260
+$progressBar1.Size = $System_Drawing_Size
+$progressBar1.TabIndex = 0
+$progressbar1.value = 0
+
+$form1.controls.add($progressbar1)
 
 #endregion Generated Form Code
 
