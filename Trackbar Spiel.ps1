@@ -33,27 +33,28 @@ $button1_OnClick=
 $global:Versuch++
 
 $scrollnumber = $trackBar1.Value
-if($global:randomnumber -gt $scrollnumber -and $global:Versuch -lt 5)
+if($global:randomnumber -gt $scrollnumber -and $global:Versuch -lt 10)
 {
 $statusBar1.Text = "Zahl größer als $scrollnumber, das ist $global:Versuch. Versuch"
-$progressBar1.value = $progressbar1.value + 20
+$progressBar1.value = $progressbar1.value + 10
 }
-elseif($global:randomnumber -lt $scrollnumber -and $global:Versuch -lt 5)
+elseif($global:randomnumber -lt $scrollnumber -and $global:Versuch -lt 10)
 {
 $statusBar1.Text = "Zahl kleiner als $scrollnumber, das ist $global:versuch. Versuch"
-$progressBar1.value = $progressbar1.value + 20
+$progressBar1.value = $progressbar1.value + 10
 }
-elseif($global:randomnumber -eq $scrollnumber -and $global:Versuch -lt 5)
+elseif($global:randomnumber -eq $scrollnumber -and $global:Versuch -lt 10)
 {
 $statusBar1.Text = "Zahl gefunden, es ist $global:randomnumber"
 $global:randomnumber = get-random -Minimum 1 -Maximum 100
 $global:versuch= 0
-$progressBar1.value = $progressbar1.value + 20
+$progressBar1.value = $progressbar1.value + 10
+$button1.Enabled = $false
 }
 else{
 $statusBar1.Text = "Verloren, zuviele Versuche gebraucht"
 $button1.Enabled = $false
-$progressBar1.Value = $progressBar1.Value + 20
+$progressBar1.Value = $progressBar1.Value + 10
 }
 
 
